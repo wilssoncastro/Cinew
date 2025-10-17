@@ -1,0 +1,142 @@
+// ===============================
+// 🎨 VARIABLES SASS (5 requeridas)
+// ===============================
+$color-principal: #3A4F7A;
+$color-borde: #ccc;
+$color-acento: #007BFF;
+$radio-borde: 10px;
+$ancho-input: 300px;
+
+// ===============================
+// 🧱 ESTILOS BASE
+// ===============================
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100vh;
+}
+
+// ===============================
+// 🧭 HEADER
+// ===============================
+header {
+    .container-header {
+        width: 100%;
+        height: 80px;
+        background-color: $color-principal;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0 20px;
+
+        .logo-principal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: $radio-borde;
+            width: 200px;
+            height: 60px;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+
+        input[type="text"] {
+            width: $ancho-input;
+            padding: 10px;
+            border: 2px solid $color-borde;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s ease;
+
+            &:focus {
+                border-color: $color-acento;
+                box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            }
+        }
+    }
+}
+
+// ===============================
+// 🧩 BODY
+// ===============================
+.body {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+
+    // ======== Interpolación #1 ========
+    // Uso de variable dentro del nombre de clase
+    
+    .body-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        padding: 30px;
+        width: 100%;
+    }
+    
+    $card-class: "card";
+    // ======== Tarjetas ========
+    .#{$card-class} {
+        background-color: $color-principal;
+        border-radius: $radio-borde;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        padding: 10px;
+        transition: transform 0.2s;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+
+        img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: $radio-borde;
+        }
+
+        h3 {
+            margin: 10px 0 5px;
+            color: #fff;
+        }
+
+        p {
+            color: #fff;
+            font-size: 14px;
+        }
+    }
+}
+
+// ===============================
+// 🎛️ FILTROS
+// ===============================
+.filtros {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    select,
+    input {
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid $color-borde;
+    }
+
+    // ======== Interpolación #2 ========
+    // Construimos una clase de filtro dinámica
+    $filtro-nombre: "activo";
+
+    &.#{$filtro-nombre} {
+        border: 2px solid $color-acento;
+    }
+}

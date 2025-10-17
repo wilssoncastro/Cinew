@@ -1,0 +1,100 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100vh;
+}
+
+header .container-header {
+  width: 100%;
+  height: 80px;
+  background-color: #3A4F7A;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 20px;
+}
+header .container-header .logo-principal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  width: 200px;
+  height: 60px;
+  overflow: hidden;
+}
+header .container-header .logo-principal img {
+  width: 100%;
+  object-fit: cover;
+}
+header .container-header input[type=text] {
+  width: 300px;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+header .container-header input[type=text]:focus {
+  border-color: #007BFF;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.body {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+}
+.body .body-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 30px;
+  width: 100%;
+}
+.body .card {
+  background-color: #3A4F7A;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  padding: 10px;
+  transition: transform 0.2s;
+}
+.body .card:hover {
+  transform: scale(1.05);
+}
+.body .card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.body .card h3 {
+  margin: 10px 0 5px;
+  color: #fff;
+}
+.body .card p {
+  color: #fff;
+  font-size: 14px;
+}
+
+.filtros {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.filtros select,
+.filtros input {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.filtros.activo {
+  border: 2px solid #007BFF;
+}
+
+/*# sourceMappingURL=home.css.map */
