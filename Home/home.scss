@@ -1,20 +1,31 @@
 // ===============================
 // 🎨 VARIABLES SASS (5 requeridas)
 // ===============================
-$color-principal: #3A4F7A;
-$color-borde: #ccc;
-$color-acento: #007BFF;
-$radio-borde: 10px;
-$ancho-input: 300px;
+$color-fondo: #0b0b0f;
+$color-superficie: #17171e;
+$color-acento: #f5c518;
+$color-borde: rgba(255, 255, 255, 0.08);
+$radio-borde: 14px;
 
 // ===============================
 // 🧱 ESTILOS BASE
 // ===============================
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    height: 100vh;
+    min-height: 100vh;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: #f3f3f3;
+    background-color: $color-fondo;
+    background-image:
+        radial-gradient(circle at 12% -10%, rgba(245, 197, 24, 0.14), transparent 45%),
+        radial-gradient(circle at 92% 0%, rgba(229, 9, 20, 0.12), transparent 42%);
+    background-attachment: fixed;
 }
 
 // ===============================
@@ -22,41 +33,62 @@ body {
 // ===============================
 header {
     .container-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
         width: 100%;
-        height: 80px;
-        background-color: $color-principal;
+        min-height: 80px;
+        padding: 0 30px;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
-        padding: 0 20px;
+        gap: 20px;
+        background-color: rgba(11, 11, 15, 0.85);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid $color-borde;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
 
         .logo-principal {
             display: flex;
-            justify-content: center;
             align-items: center;
-            border-radius: $radio-borde;
-            width: 200px;
-            height: 60px;
-            overflow: hidden;
+            gap: 10px;
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #fff;
+
+            .marca span {
+                color: $color-acento;
+                text-shadow: 0 0 18px rgba(245, 197, 24, 0.45);
+            }
 
             img {
-                width: 100%;
-                object-fit: cover;
+                width: 150px;
+                height: 52px;
+                object-fit: contain;
             }
         }
 
         input[type="text"] {
-            width: $ancho-input;
-            padding: 10px;
-            border: 2px solid $color-borde;
-            border-radius: 5px;
-            font-size: 16px;
+            width: 300px;
+            max-width: 45vw;
+            padding: 12px 16px;
+            color: #f3f3f3;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid $color-borde;
+            border-radius: 999px;
+            font-size: 15px;
             outline: none;
-            transition: border-color 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+
+            &::placeholder {
+                color: rgba(255, 255, 255, 0.45);
+            }
 
             &:focus {
+                background-color: rgba(255, 255, 255, 0.08);
                 border-color: $color-acento;
-                box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+                box-shadow: 0 0 0 3px rgba(245, 197, 24, 0.2);
             }
         }
     }
@@ -67,6 +99,7 @@ header {
 // ===============================
 .body {
     width: 90%;
+    max-width: 1400px;
     margin: auto;
     display: flex;
     align-items: center;
@@ -75,44 +108,85 @@ header {
 
     // ======== Interpolación #1 ========
     // Uso de variable dentro del nombre de clase
-    
+
     .body-cards {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 20px;
-        padding: 30px;
+        gap: 24px;
+        padding: 30px 0;
         width: 100%;
+
+        > p {
+            grid-column: 1 / -1;
+            padding: 50px 0;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 1.1rem;
+        }
     }
-    
+
     $card-class: "card";
     // ======== Tarjetas ========
     .#{$card-class} {
-        background-color: $color-principal;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        background-color: $color-superficie;
+        border: 1px solid $color-borde;
         border-radius: $radio-borde;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
         text-align: center;
-        padding: 10px;
-        transition: transform 0.2s;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, $color-acento, #e50914);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
 
         &:hover {
-            transform: scale(1.05);
+            transform: translateY(-8px);
+            border-color: rgba(245, 197, 24, 0.45);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(245, 197, 24, 0.2);
+
+            &::after {
+                opacity: 1;
+            }
         }
 
         img {
             width: 100%;
-            height: 300px;
+            height: 320px;
             object-fit: cover;
-            border-radius: $radio-borde;
+            display: block;
+            transition: transform 0.45s ease, filter 0.45s ease;
+        }
+
+        &:hover img {
+            transform: scale(1.06);
+            filter: brightness(1.08);
         }
 
         h3 {
-            margin: 10px 0 5px;
+            margin: 14px 12px 4px;
+            font-size: 1rem;
+            font-weight: 600;
             color: #fff;
         }
 
         p {
-            color: #fff;
-            font-size: 14px;
+            margin: 0 12px 16px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
         }
     }
 }
@@ -122,14 +196,31 @@ header {
 // ===============================
 .filtros {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     align-items: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
 
     select,
     input {
-        padding: 8px;
-        border-radius: 5px;
+        min-width: 140px;
+        padding: 10px 14px;
+        color: #f3f3f3;
+        background-color: $color-superficie;
         border: 1px solid $color-borde;
+        border-radius: 10px;
+        font-size: 0.95rem;
+        outline: none;
+        transition: border-color 0.25s ease, box-shadow 0.25s ease;
+
+        &:focus {
+            border-color: $color-acento;
+            box-shadow: 0 0 0 3px rgba(245, 197, 24, 0.18);
+        }
+
+        option {
+            background-color: $color-superficie;
+        }
     }
 
     // ======== Interpolación #2 ========
@@ -138,5 +229,30 @@ header {
 
     &.#{$filtro-nombre} {
         border: 2px solid $color-acento;
+    }
+}
+
+// ===============================
+// 📱 RESPONSIVE
+// ===============================
+@media (max-width: 640px) {
+    header .container-header {
+        flex-direction: column;
+        justify-content: center;
+        gap: 12px;
+        padding: 14px 20px;
+
+        .logo-principal {
+            font-size: 22px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            max-width: none;
+        }
+    }
+
+    .body {
+        width: 94%;
     }
 }
